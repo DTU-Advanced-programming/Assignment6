@@ -79,9 +79,17 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
                 return arg1 % arg2; };
 
     final private Map<Operator, Map<Type, Function<List<Number>,Number>>> operatorFunctions = Map.ofEntries(
+            entry (PLUS1, Map.ofEntries(
+                    entry(INT, plus1int ),
+                    entry(FLOAT, plus1float ) )
+            ),
             entry(PLUS2, Map.ofEntries(
                     entry(INT, plus2int ),
                     entry(FLOAT, plus2float ) )
+            ),
+            entry (MINUS1, Map.ofEntries(
+                    entry(INT, minus1int ),
+                    entry(FLOAT, minus1float ) )
             ),
             entry(MINUS2, Map.ofEntries(
                     entry(INT, minus2int ),
