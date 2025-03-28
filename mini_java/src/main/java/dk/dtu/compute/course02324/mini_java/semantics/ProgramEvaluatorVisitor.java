@@ -32,7 +32,6 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
             args -> { int arg1 = args.get(0).intValue();
                 float arg2 = args.get(1).intValue();
                 return arg1 - arg2; };
-
     private Function<List<Number>,Number> minus2float =
             args -> { float arg1 = args.get(0).floatValue();
                       float arg2 = args.get(1).floatValue();
@@ -42,11 +41,19 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
             args -> { int arg1 = args.get(0).intValue();
                 float arg2 = args.get(1).intValue();
                 return arg1 * arg2; };
-
     private Function<List<Number>,Number> multfloat =
             args -> { float arg1 = args.get(0).floatValue();
                 float arg2 = args.get(1).floatValue();
                 return arg1 * arg2; };
+
+    private Function<List<Number>,Number> divint =
+            args -> { int arg1 = args.get(0).intValue();
+                float arg2 = args.get(1).intValue();
+                return arg1 / arg2; };
+    private Function<List<Number>,Number> divfloat =
+            args -> { float arg1 = args.get(0).floatValue();
+                float arg2 = args.get(1).floatValue();
+                return arg1 / arg2; };
 
     final private Map<Operator, Map<Type, Function<List<Number>,Number>>> operatorFunctions = Map.ofEntries(
             entry(PLUS2, Map.ofEntries(
@@ -60,6 +67,10 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
             entry(MULT, Map.ofEntries(
                     entry(INT, multint ),
                     entry(FLOAT, multfloat ) )
+            ),
+            entry(DIV, Map.ofEntries(
+                    entry(INT, divint ),
+                    entry(FLOAT, divfloat ) )
             ));
 
     public ProgramEvaluatorVisitor(ProgramTypeVisitor pv) {
