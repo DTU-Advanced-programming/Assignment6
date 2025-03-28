@@ -19,6 +19,13 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
 
     final public Map<Expression, Number> values = new HashMap<>();
 
+    private Function<List<Number>, Number> plus1int =
+            args -> { int arg = args.get(0).intValue();
+                return +arg; };
+    private Function<List<Number>,Number> plus1float =
+            args -> { float arg = args.get(0).floatValue();
+                return +arg; };
+
     private Function<List<Number>,Number> plus2int =
             args -> { int arg1 = args.get(0).intValue();
                 int arg2 = args.get(1).intValue();
@@ -27,6 +34,13 @@ public class ProgramEvaluatorVisitor extends ProgramVisitor {
             args -> { float arg1 = args.get(0).floatValue();
                 float arg2 = args.get(1).floatValue();
                 return arg1 + arg2; };
+
+    private Function<List<Number>, Number> minus1int =
+            args -> { int arg = args.get(0).intValue();
+                return -arg; };
+    private Function<List<Number>,Number> minus1float =
+            args -> { float arg = args.get(0).floatValue();
+                return -arg; };
 
     private Function<List<Number>,Number> minus2int =
             args -> { int arg1 = args.get(0).intValue();
