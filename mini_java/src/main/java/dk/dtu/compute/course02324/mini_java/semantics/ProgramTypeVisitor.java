@@ -119,5 +119,17 @@ public class ProgramTypeVisitor extends ProgramVisitor {
             problems.add("Expressions does not have a type: Operator " + operatorExpression.operator);
         }
     }
+    
+    @Override
+    public void visit(PrintStatement printStatement) {
+    	Type expressionType = typeMapping.get(printStatement.getExpression());
+    	if (expressionType == null) {
+    		problems.add("Expression in PrintStatement has no type.");
+    	} else {
+    		if (!(expressionType.equals(INT) || expressionType.equals(FLOAT))) {
+    			problems.add("Expression in PrintStatement has incompatible type for printing: " + expressionType);
+    		}
+    	}
+    }
 
 }
